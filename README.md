@@ -7,7 +7,7 @@ A serverless web app to upload plant images, identify plants using the [plant.id
 ## 📸 How It Works
 
 1. **Frontend (index.html)** requests a **presigned URL** via **API Gateway → Lambda-1**.
-2. **Lambda-2**:
+2. **Lambda-1**:
      - Parse query string param: ?filename=xyz
      - Encode the filename to make it URL-safe
      - Generate the presigned URL with a 5-minute expiration
