@@ -48,6 +48,7 @@ A serverless web app to upload plant images, identify plants using the [plant.id
     - Fetch the uploaded image.
     - Send the image to **Plant Identifier API**.
     - Save returned plant name/details into **DynamoDB**.
+6. Create a DynamoDB table to store the result 
 
 ---
 
