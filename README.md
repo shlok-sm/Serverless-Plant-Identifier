@@ -34,8 +34,7 @@ A serverless web app to upload plant images, identify plants using the [plant.id
 
 ## 🗺️ Architecture Diagram
 
-![Architecture](![plant-identifier-architecture](https://github.com/user-attachments/assets/233ff4a1-856a-48f2-81f8-8e382b7a1f59)
-)
+![Architecture](./plant-identifier-architecture.png)
 
 ---
 
