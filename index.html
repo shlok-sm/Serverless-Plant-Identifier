@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plant Identifier</title>
+</head>
+<body>
+  <h1>Upload a Plant Image</h1>
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">Upload</button>
+  <p id="status"></p>
+
+  <script>
+    async function uploadFile() {
+      const file = document.getElementById('fileInput').files[0];
+      if (!file) return alert("Select a file!");
+
+      try {
+        // Get the presigned URL from API Gateway
+        const res = await fetch('https://ye987y5eu8.execute-api.us-east-1.amazonaws.com/api-gateway-config?filename=' + encodeURIComponent(file.name));
+
+        // Ensure the response is successful
+        if (!res.ok) {
+          throw new Error("Failed to get presigned URL");
+        }
+
+        // Parse the response JSON body
+        const data = await res.json();
+
+        // Extract the URL from the body
+        const uploadUrl = data.url
+        
+        if (!uploadUrl) {
+          throw new Error("No URL found in response body");
+        }
+
+        // Upload the file to the presigned URL
+        const uploadRes = await fetch(uploadUrl, {
+          method: 'PUT',
+          headers:{
+            "ContentType": 'image/webp'
+          },
+          body: file // Send the file as the body of the request
+        });
+
+        if (!uploadRes.ok) {
+              const errorText = await uploadRes.text(); // Get error details from the response body
+              console.error('Upload failed with status:', uploadRes.status, errorText);
+            }
+
+        // Display upload status
+        document.getElementById('status').innerText =
+          uploadRes.ok ? "Uploaded! Identification in progress..." : "Upload failed";
+      } catch (error) {
+        // Handle any errors that occur during the process
+        document.getElementById('status').innerText = "An error occurred: " + error.message;
+      }
+    }
+  </script>
+  
+</body>
+</html>
+
+
+
+
+
+
+
