@@ -26,8 +26,7 @@ A serverless web app to upload plant images, identify plants using the [plant.id
 
 -AWS S3      
 -AWS API Gateway
--AWS Lambda-1   
--AWS Lambda-2   
+-AWS Lambda
 -AWS DynamoDB    
 -Plant.id API    
 
